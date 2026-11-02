@@ -3,255 +3,98 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>밸리 클리닉 예약</title>
+<title>밸리 클리닉 · 예약</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#eef3f2;--card:#fff;--ink:#16302e;--sub:#5f7673;--line:#d3e0de;--main:#1f6f68;--main-d:#164f4a;--soft:#dcefec;--off:#e9eeee;--warn:#b3402f}
+:root{
+  --paper:#f5f2ec;
+  --card:#fffdf9;
+  --ink:#1f1d1a;
+  --sub:#7a746c;
+  --faint:#b9b2a7;
+  --line:#e3ded4;
+  --accent:#3d5a4b;
+  --accent-ink:#2c4337;
+  --accent-soft:#e7ede8;
+  --warn:#a5452e;
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',sans-serif;line-height:1.6}
-.wrap{max-width:560px;margin:0 auto;padding:28px 18px 60px}
-h1{font-family:'Noto Serif KR',serif;font-size:30px;margin:0 0 6px;letter-spacing:-.02em}
-.lead{color:var(--sub);margin:0 0 22px}
-.tabs{display:flex;gap:6px;background:var(--off);padding:4px;border-radius:12px;margin-bottom:20px}
-.tabs button{flex:1;border:0;background:none;padding:10px;border-radius:9px;font:500 15px inherit;font-family:inherit;color:var(--sub);cursor:pointer}
-.tabs button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:'IBM Plex Sans KR',system-ui,sans-serif;font-size:15px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+button{font:inherit;color:inherit}
+.wrap{max-width:520px;margin:0 auto;padding:40px 20px 64px}
+
+.eyebrow{margin:0 0 10px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--sub)}
+h1{margin:0;font-family:'Gowun Batang',serif;font-weight:700;font-size:34px;letter-spacing:-.01em;line-height:1.25}
+.lead{margin:10px 0 0;color:var(--sub)}
+.hours{display:flex;flex-wrap:wrap;gap:6px 18px;margin:22px 0 0;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:13px}
+.hours div{display:flex;gap:8px}
+.hours dt{color:var(--sub)}
+.hours dd{margin:0;font-variant-numeric:tabular-nums}
+
+.tabs{display:flex;gap:22px;margin:30px 0 6px}
+.tabs button{border:0;background:none;padding:0 0 8px;cursor:pointer;color:var(--sub);font-weight:500;border-bottom:2px solid transparent}
+.tabs button.on{color:var(--ink);border-color:var(--ink)}
 .panel{display:none}.panel.on{display:block}
-h2{font-size:16px;margin:22px 0 10px}
-.dates{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px}
-.date{border:1.5px solid var(--line);background:var(--card);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;font-family:inherit;color:var(--ink)}
-.date b{display:block;font-size:17px}.date span{font-size:13px;color:var(--sub)}
-.date.on{border-color:var(--main);background:var(--soft)}
-.times{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.time{border:1.5px solid var(--main);background:var(--card);color:var(--main-d);border-radius:12px;padding:14px 4px;font:700 16px inherit;font-family:inherit;cursor:pointer}
-.time small{display:block;font-weight:400;font-size:12px;color:var(--sub)}
-.time:hover{background:var(--soft)}
-.time.full{border-color:var(--line);background:var(--off);color:#9aaaa8;cursor:not-allowed;text-decoration:line-through}
-.time.full small{text-decoration:none}
-.note{font-size:13px;color:var(--sub);margin-top:14px}
-.empty{color:var(--sub);padding:18px 0}
-.live{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--sub);margin-bottom:6px}
-.live i{width:8px;height:8px;border-radius:50%;background:#bbb}.live.ok i{background:#2fa36b}
-.modal{position:fixed;inset:0;background:rgba(22,48,46,.55);display:none;align-items:flex-end;justify-content:center;padding:0}
-.modal.on{display:flex}
-.sheet{background:var(--card);width:100%;max-width:560px;border-radius:20px 20px 0 0;padding:24px 20px 30px}
-.sheet h3{margin:0 0 4px;font-family:'Noto Serif KR',serif;font-size:21px}
-label{display:block;font-size:14px;font-weight:500;margin:14px 0 4px}
-input{width:100%;padding:13px;border:1.5px solid var(--line);border-radius:10px;font:16px inherit;font-family:inherit}
-input:focus,button:focus-visible{outline:3px solid #8cc9c2;outline-offset:1px}
-.opts{display:grid;gap:8px;margin-top:4px}
-.opt{display:flex;align-items:center;justify-content:space-between;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;font-weight:500}
-.opt input{width:auto;margin-right:10px;accent-color:var(--main)}
-.opt span:first-child{display:flex;align-items:center}
-.opt.on{border-color:var(--main);background:var(--soft)}
-.opt em{font-style:normal;color:var(--main-d);font-weight:700}
-.go{width:100%;margin-top:18px;padding:15px;border:0;border-radius:12px;background:var(--main);color:#fff;font:700 16px inherit;font-family:inherit;cursor:pointer}
-.go:hover{background:var(--main-d)}.go:disabled{opacity:.6}
-.ghost{width:100%;margin-top:8px;padding:12px;border:0;background:none;color:var(--sub);font:15px inherit;font-family:inherit;cursor:pointer}
-.err{color:var(--warn);font-size:14px;margin-top:10px;min-height:20px}
-.ticket{background:var(--card);border:1.5px solid var(--main);border-radius:14px;padding:16px 18px;margin-bottom:10px}
-.ticket b{font-size:18px}.ticket div{color:var(--sub);font-size:14px}
-.done{text-align:center;padding:10px 0}
-.done .mark{width:56px;height:56px;border-radius:50%;background:var(--soft);color:var(--main);font-size:28px;display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
-@media (prefers-reduced-motion:no-preference){.sheet{animation:up .25s ease-out}@keyframes up{from{transform:translateY(30px);opacity:0}}}
-</style>
-</head>
-<body>
-<div class="wrap">
-  <h1>밸리 클리닉</h1>
-  <p class="lead">원하는 날짜와 시간을 골라 바로 예약하세요. 1회 시술은 20~30분 걸려요.</p>
-  <div class="tabs">
-    <button class="on" data-tab="book">예약하기</button>
-    <button data-tab="find">내 예약 확인</button>
-  </div>
 
-  <section class="panel on" id="book">
-    <div class="live" id="live"><i></i><span>연결 중…</span></div>
-    <h2>날짜 선택</h2>
-    <div class="dates" id="dates"></div>
-    <h2>시간 선택</h2>
-    <div class="times" id="times"></div>
-    <div class="empty" id="pick" style="display:none">날짜를 먼저 선택해 주세요.</div>
-    <p class="note">회색으로 표시된 시간은 이미 예약된 시간이에요. 예약 변경·취소는 클리닉으로 연락해 주세요.</p>
-  </section>
+.step{display:flex;align-items:baseline;gap:10px;margin:30px 0 12px}
+.step .n{font-family:'Gowun Batang',serif;font-size:13px;color:var(--faint)}
+.step h2{margin:0;font-size:16px;font-weight:600}
+.live{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--sub)}
+.live i{width:6px;height:6px;border-radius:50%;background:var(--faint)}
+.live.ok i{background:#4f9a6d;box-shadow:0 0 0 3px rgba(79,154,109,.15)}
 
-  <section class="panel" id="find">
-    <p class="lead" style="margin-bottom:0">예약할 때 입력한 예약자 이름을 넣으면 예정된 예약을 보여드려요.</p>
-    <label for="fname">예약자 이름</label>
-    <input id="fname" autocomplete="name" placeholder="홍길동">
-    <button class="go" id="findBtn">예약 확인하기</button>
-    <div class="err" id="ferr"></div>
-    <div id="results"></div>
-  </section>
-</div>
-
-<div class="modal" id="modal">
-  <div class="sheet" id="sheet"></div>
-</div>
-
-<script type="module">
-/* ============ 1) 여기를 본인 Firebase 설정으로 바꿔 주세요 ============ */
-const firebaseConfig = {
-  apiKey: "AIzaSyCJ7b5Q7gTLBNiQxcNIXqn4UXBdmk0pDUE",
-  authDomain: "clinic-14313.firebaseapp.com",
-  projectId: "clinic-14313",
-  storageBucket: "clinic-14313.firebasestorage.app",
-  messagingSenderId: "466545493751",
-  appId: "1:466545493751:web:d41dafefa389c4c636f5f2"
-};
-
-/* ============ 2) 예약 가능 시간 (요일: 0=일 ... 5=금, 6=토) ============ */
-const SCHEDULE = {
-  5: ["19:00", "19:20"],
-  6: ["14:00","14:30","15:00","15:30","16:00","16:30","19:00","19:30","20:00"]
-};
-/* 옵션 (이름은 나중에 "옵션 1" 자리에 원하는 이름을 적으면 돼요) */
-const OPTIONS = [
-  { name: "옵션 1", price: 0 },
-  { name: "옵션 2", price: 2000 },
-  { name: "옵션 3", price: 4000 }
-];
-const won = p => p===0 ? "무료" : p.toLocaleString("ko-KR")+"원";
-const WEEKS_AHEAD = 4;   // 앞으로 몇 주까지 보여줄지
-/* ================================================================== */
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, onSnapshot, doc, getDoc, runTransaction, serverTimestamp }
-  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const $ = s => document.querySelector(s);
-const DAY = ["일","월","화","수","목","금","토"];
-const pad = n => String(n).padStart(2,"0");
-const ymd = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
-const slotId = (date,t) => `${date}_${t.replace(":","")}`;
-const nameKey = s => s.replace(/[\s\/]/g,"").toLowerCase();
-const digits = s => s.replace(/\D/g,"");
-const addMin = (t,m) => { const [h,mi]=t.split(":").map(Number); const x=h*60+mi+m; return `${pad(Math.floor(x/60))}:${pad(x%60)}`; };
-const endGap = t => (SCHEDULE[5].includes(t) ? 20 : 30);
-
-let db, booked = new Set(), selDate = null;
-
-/* 예약 가능한 날짜 목록 만들기 */
-function buildDates(){
-  const out = [], today = new Date(); today.setHours(0,0,0,0);
-  for(let i=0;i<WEEKS_AHEAD*7;i++){
-    const d = new Date(today); d.setDate(today.getDate()+i);
-    if(SCHEDULE[d.getDay()]) out.push(d);
-  }
-  return out;
+.dates{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.date{
+  border:1px solid var(--line);background:var(--card);border-radius:8px;
+  padding:9px 4px 8px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s;
 }
-const dateList = buildDates();
-const isPast = (date,t) => new Date(`${date}T${t}:00`) <= new Date();
+.date span{display:block;font-size:11px;color:var(--sub)}
+.date b{display:block;font-size:19px;font-weight:500;font-variant-numeric:tabular-nums;line-height:1.3}
+.date small{display:block;font-size:11px;color:var(--sub)}
+.date:hover{border-color:var(--faint)}
+.date.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.date.on span,.date.on small{color:#cfc8bd}
 
-function renderDates(){
-  $("#dates").innerHTML = dateList.map(d=>{
-    const k = ymd(d);
-    return `<button class="date ${k===selDate?"on":""}" data-d="${k}"><b>${d.getMonth()+1}/${d.getDate()}</b><span>${DAY[d.getDay()]}요일</span></button>`;
-  }).join("");
+.times{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.time{
+  border:1px solid var(--line);background:var(--card);border-radius:8px;
+  padding:12px 4px 10px;cursor:pointer;text-align:center;transition:border-color .15s,background .15s;
 }
-function renderTimes(){
-  const box = $("#times");
-  if(!selDate){ box.innerHTML=""; $("#pick").style.display="block"; return; }
-  $("#pick").style.display="none";
-  const day = new Date(selDate+"T00:00:00").getDay();
-  box.innerHTML = SCHEDULE[day].map(t=>{
-    const full = booked.has(slotId(selDate,t)) || isPast(selDate,t);
-    return `<button class="time ${full?"full":""}" data-t="${t}" ${full?"disabled":""}>${t}<small>${full?"마감":"예약 가능"}</small></button>`;
-  }).join("");
+.time b{display:block;font-size:17px;font-weight:500;font-variant-numeric:tabular-nums}
+.time small{display:block;font-size:11px;color:var(--accent)}
+.time:hover{border-color:var(--accent);background:var(--accent-soft)}
+.time.full{background:transparent;border-style:dashed;cursor:not-allowed}
+.time.full b{color:var(--faint);font-weight:400}
+.time.full small{color:var(--faint)}
+.time.full:hover{border-color:var(--line);background:transparent}
+.hint{color:var(--sub);font-size:14px;padding:14px 0;margin:0}
+.foot{margin:28px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--sub)}
+
+label.f{display:block;font-size:13px;font-weight:500;margin:16px 0 6px}
+input[type=text],input[type=tel]{
+  width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:8px;
+  background:#fff;font:16px 'IBM Plex Sans KR',sans-serif;color:var(--ink);
 }
+input::placeholder{color:var(--faint)}
+input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
-/* 예약창 */
-function openSheet(html){ $("#sheet").innerHTML = html; $("#modal").classList.add("on"); }
-function closeSheet(){ $("#modal").classList.remove("on"); }
-function niceDate(k){ const d=new Date(k+"T00:00:00"); return `${d.getMonth()+1}월 ${d.getDate()}일 (${DAY[d.getDay()]})`; }
-
-function openForm(date,t){
-  openSheet(`
-    <h3>${niceDate(date)} ${t}</h3>
-    <div style="color:var(--sub);font-size:14px">시술 시간 약 20~30분</div>
-    <label for="nm">예약자 이름 (시술 받는 분)</label><input id="nm" autocomplete="name" placeholder="홍길동">
-    <label>옵션 선택</label>
-    <div class="opts" id="opts">${OPTIONS.map((o,i)=>`<label class="opt ${i===0?"on":""}" style="margin:0"><span><input type="radio" name="opt" value="${i}" ${i===0?"checked":""}>${o.name}</span><em>${won(o.price)}</em></label>`).join("")}</div>
-    <label for="ph">연락처</label><input id="ph" type="tel" inputmode="numeric" autocomplete="tel" placeholder="010-1234-5678">
-    <div class="err" id="err"></div>
-    <button class="go" id="submit">예약 확정하기</button>
-    <button class="ghost" id="cancel">닫기</button>`);
-  $("#cancel").onclick = closeSheet;
-  $("#opts").onchange = () => document.querySelectorAll("#opts .opt").forEach(l=>l.classList.toggle("on",l.querySelector("input").checked));
-  $("#submit").onclick = () => book(date,t);
+.btn{
+  display:block;width:100%;margin-top:20px;padding:14px;border:0;border-radius:8px;
+  background:var(--ink);color:var(--paper);font-weight:600;cursor:pointer;transition:background .15s;
 }
+.btn:hover{background:#000}
+.btn:disabled{opacity:.55;cursor:default}
+.link{display:block;width:100%;margin-top:6px;padding:10px;border:0;background:none;color:var(--sub);cursor:pointer;font-size:14px}
+.err{color:var(--warn);font-size:13px;margin-top:10px;min-height:20px}
 
-async function book(date,t){
-  const name = $("#nm").value.trim(), phone = digits($("#ph").value);
-  const opt = OPTIONS[+document.querySelector('input[name="opt"]:checked').value];
-  const err = $("#err");
-  if(name.length<2){ err.textContent="예약자 이름을 2자 이상 입력해 주세요."; return; }
-  if(phone.length<10||phone.length>11){ err.textContent="연락처를 정확히 입력해 주세요."; return; }
-  const btn = $("#submit"); btn.disabled = true; btn.textContent="예약 중…";
-  const id = slotId(date,t);
-  const masked = name.length>2 ? name[0]+"*".repeat(name.length-2)+name.slice(-1) : name[0]+"*";
-  try{
-    await runTransaction(db, async tx=>{
-      const slotRef = doc(db,"slots",id);
-      if((await tx.get(slotRef)).exists()) throw new Error("TAKEN");
-      tx.set(slotRef,{date,time:t,who:masked,createdAt:serverTimestamp()});
-      tx.set(doc(db,"bookings",`${nameKey(name)}_${id}`),{date,time:t,name,option:opt.name,price:opt.price,createdAt:serverTimestamp()});
-      tx.set(doc(db,"contacts",id),{name,phone,option:opt.name,price:opt.price,createdAt:serverTimestamp()});
-    });
-    openSheet(`<div class="done"><div class="mark">✓</div><h3>예약이 완료됐어요</h3>
-      <p style="margin:8px 0 0"><b>${niceDate(date)} ${t}</b></p>
-      <p style="margin:2px 0 0;color:var(--sub)">${opt.name} · ${won(opt.price)}</p>
-      <p class="note">${name}님, 시간에 맞춰 방문해 주세요.<br>'내 예약 확인' 탭에서 예약자 이름으로 다시 볼 수 있어요.</p></div>
-      <button class="go" id="ok">확인</button>`);
-    $("#ok").onclick = closeSheet;
-  }catch(e){
-    btn.disabled=false; btn.textContent="예약 확정하기";
-    err.textContent = e.message==="TAKEN"
-      ? "방금 다른 분이 먼저 예약했어요. 다른 시간을 선택해 주세요."
-      : "예약에 실패했어요. 잠시 후 다시 시도해 주세요.";
-    console.error(e);
-  }
-}
-
-/* 내 예약 확인 */
-async function findMine(){
-  const nm = $("#fname").value.trim(), err=$("#ferr"), out=$("#results");
-  err.textContent=""; out.innerHTML="";
-  if(nm.length<2){ err.textContent="예약자 이름을 2자 이상 입력해 주세요."; return; }
-  $("#findBtn").disabled=true;
-  try{
-    const ids=[];
-    dateList.forEach(d=>SCHEDULE[d.getDay()].forEach(t=>{ if(!isPast(ymd(d),t)) ids.push(slotId(ymd(d),t)); }));
-    const snaps = await Promise.all(ids.map(id=>getDoc(doc(db,"bookings",`${nameKey(nm)}_${id}`))));
-    const mine = snaps.filter(s=>s.exists()).map(s=>s.data());
-    out.innerHTML = mine.length
-      ? mine.map(b=>`<div class="ticket"><b>${niceDate(b.date)} ${b.time}</b><div>${b.name}님 · ${b.option} · ${won(b.price)} · 약 20~30분</div></div>`).join("")
-      : `<div class="empty">예정된 예약이 없어요. '예약하기'에서 시간을 골라 보세요.</div>`;
-  }catch(e){ err.textContent="조회에 실패했어요. 잠시 후 다시 시도해 주세요."; console.error(e); }
-  $("#findBtn").disabled=false;
-}
-
-/* 이벤트 */
-document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{
-  document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b));
-  document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("on",p.id===b.dataset.tab));
-});
-$("#dates").onclick = e=>{ const b=e.target.closest(".date"); if(!b) return; selDate=b.dataset.d; renderDates(); renderTimes(); };
-$("#times").onclick = e=>{ const b=e.target.closest(".time"); if(!b||b.disabled) return; openForm(selDate,b.dataset.t); };
-$("#modal").onclick = e=>{ if(e.target.id==="modal") closeSheet(); };
-$("#findBtn").onclick = findMine;
-
-renderDates(); renderTimes();
-
-/* Firebase 연결 + 실시간 반영 */
-try{
-  db = getFirestore(initializeApp(firebaseConfig));
-  onSnapshot(collection(db,"slots"), snap=>{
-    booked = new Set(snap.docs.map(d=>d.id));
-    $("#live").className="live ok"; $("#live span").textContent="실시간 예약 현황";
-    renderTimes();
-  }, e=>{ $("#live span").textContent="연결 실패 – Firebase 설정을 확인해 주세요"; console.error(e); });
-}catch(e){ $("#live span").textContent="Firebase 설정이 필요해요"; console.error(e); }
-</script>
-</body>
-</html>
+.opts{border:1px solid var(--line);border-radius:8px;background:#fff;overflow:hidden}
+.opt{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;border-top:1px solid var(--line)}
+.opt:first-child{border-top:0}
