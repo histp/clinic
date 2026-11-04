@@ -30,6 +30,7 @@ body{
 button{font:inherit;color:inherit}
 .wrap{max-width:520px;margin:0 auto;padding:40px 20px 64px}
 
+/* 머리말 */
 .eyebrow{margin:0 0 10px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--sub)}
 h1{margin:0;font-family:'Gowun Batang',serif;font-weight:700;font-size:34px;letter-spacing:-.01em;line-height:1.25}
 .lead{margin:10px 0 0;color:var(--sub)}
@@ -38,11 +39,13 @@ h1{margin:0;font-family:'Gowun Batang',serif;font-weight:700;font-size:34px;lett
 .hours dt{color:var(--sub)}
 .hours dd{margin:0;font-variant-numeric:tabular-nums}
 
+/* 탭 */
 .tabs{display:flex;gap:22px;margin:30px 0 6px}
 .tabs button{border:0;background:none;padding:0 0 8px;cursor:pointer;color:var(--sub);font-weight:500;border-bottom:2px solid transparent}
 .tabs button.on{color:var(--ink);border-color:var(--ink)}
 .panel{display:none}.panel.on{display:block}
 
+/* 단계 제목 */
 .step{display:flex;align-items:baseline;gap:10px;margin:30px 0 12px}
 .step .n{font-family:'Gowun Batang',serif;font-size:13px;color:var(--faint)}
 .step h2{margin:0;font-size:16px;font-weight:600}
@@ -50,6 +53,7 @@ h1{margin:0;font-family:'Gowun Batang',serif;font-weight:700;font-size:34px;lett
 .live i{width:6px;height:6px;border-radius:50%;background:var(--faint)}
 .live.ok i{background:#4f9a6d;box-shadow:0 0 0 3px rgba(79,154,109,.15)}
 
+/* 날짜 */
 .dates{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
 .date{
   border:1px solid var(--line);background:var(--card);border-radius:8px;
@@ -62,6 +66,7 @@ h1{margin:0;font-family:'Gowun Batang',serif;font-weight:700;font-size:34px;lett
 .date.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 .date.on span,.date.on small{color:#cfc8bd}
 
+/* 시간 */
 .times{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
 .time{
   border:1px solid var(--line);background:var(--card);border-radius:8px;
@@ -77,6 +82,7 @@ h1{margin:0;font-family:'Gowun Batang',serif;font-weight:700;font-size:34px;lett
 .hint{color:var(--sub);font-size:14px;padding:14px 0;margin:0}
 .foot{margin:28px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--sub)}
 
+/* 입력 */
 label.f{display:block;font-size:13px;font-weight:500;margin:16px 0 6px}
 input[type=text],input[type=tel]{
   width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:8px;
@@ -95,6 +101,283 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .link{display:block;width:100%;margin-top:6px;padding:10px;border:0;background:none;color:var(--sub);cursor:pointer;font-size:14px}
 .err{color:var(--warn);font-size:13px;margin-top:10px;min-height:20px}
 
+/* 옵션 */
 .opts{border:1px solid var(--line);border-radius:8px;background:#fff;overflow:hidden}
 .opt{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;border-top:1px solid var(--line)}
 .opt:first-child{border-top:0}
+.opt input{margin:0;accent-color:var(--accent);width:16px;height:16px}
+.opt .nm{flex:1}
+.opt .pr{font-variant-numeric:tabular-nums;color:var(--sub);font-size:14px}
+.opt.on{background:var(--accent-soft)}
+.opt.on .pr{color:var(--accent-ink);font-weight:500}
+
+/* 바텀시트 */
+.modal{position:fixed;inset:0;background:rgba(31,29,26,.42);display:none;align-items:flex-end;justify-content:center}
+.modal.on{display:flex}
+.sheet{
+  background:var(--card);width:100%;max-width:520px;max-height:92vh;overflow:auto;
+  border-radius:14px 14px 0 0;padding:10px 20px 28px;
+}
+.grab{width:36px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 16px}
+.summary{padding-bottom:14px;border-bottom:1px solid var(--line)}
+.summary p{margin:0;font-size:12px;color:var(--sub);letter-spacing:.04em}
+.summary h3{margin:2px 0 0;font-family:'Gowun Batang',serif;font-size:22px;font-weight:700}
+.summary h3 span{font-family:'IBM Plex Sans KR',sans-serif;font-weight:500;font-variant-numeric:tabular-nums;margin-left:6px}
+
+.done{padding:6px 0 4px}
+.done .tag{display:inline-block;font-size:12px;color:var(--accent-ink);background:var(--accent-soft);padding:3px 9px;border-radius:4px}
+.done h3{margin:12px 0 2px;font-family:'Gowun Batang',serif;font-size:24px}
+.done dl{margin:16px 0 0;border-top:1px solid var(--line)}
+.done dl div{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.done dt{color:var(--sub)}
+.done dd{margin:0}
+.done .note{font-size:13px;color:var(--sub);margin:14px 0 0}
+
+/* 내 예약 */
+.ticket{border-left:3px solid var(--accent);background:var(--card);padding:12px 16px;margin-top:10px;border-radius:0 8px 8px 0}
+.ticket b{display:block;font-weight:600;font-variant-numeric:tabular-nums}
+.ticket span{font-size:13px;color:var(--sub)}
+
+@media (prefers-reduced-motion:no-preference){
+  .sheet{animation:up .22s cubic-bezier(.2,.8,.3,1)}
+  @keyframes up{from{transform:translateY(24px);opacity:.4}}
+}
+@media (max-width:360px){
+  h1{font-size:29px}
+  .dates{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Valley Clinic</p>
+    <h1>밸리 클리닉</h1>
+    <p class="lead">날짜와 시간을 고르면 바로 예약돼요.<br>시술은 한 번에 20~30분 정도 걸립니다.</p>
+    <dl class="hours" id="hours"></dl>
+  </header>
+
+  <nav class="tabs">
+    <button class="on" data-tab="book">예약하기</button>
+    <button data-tab="find">내 예약 확인</button>
+  </nav>
+
+  <section class="panel on" id="book">
+    <div class="step"><span class="n">01</span><h2>날짜</h2></div>
+    <div class="dates" id="dates"></div>
+
+    <div class="step">
+      <span class="n">02</span><h2>시간</h2>
+      <span class="live" id="live"><i></i><span>불러오는 중</span></span>
+    </div>
+    <div class="times" id="times"></div>
+    <p class="hint" id="pick">위에서 날짜를 먼저 골라 주세요.</p>
+
+    <p class="foot">점선으로 표시된 시간은 이미 예약이 찼어요.<br>변경이나 취소는 클리닉으로 직접 연락 부탁드려요.</p>
+  </section>
+
+  <section class="panel" id="find">
+    <p class="lead">예약할 때 적은 이름을 넣으면 앞으로 잡힌 예약을 보여드려요.</p>
+    <label class="f" for="fname">예약자 이름</label>
+    <input type="text" id="fname" autocomplete="name" placeholder="홍길동">
+    <button class="btn" id="findBtn">확인하기</button>
+    <div class="err" id="ferr"></div>
+    <div id="results"></div>
+  </section>
+</div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="sheet" id="sheet"></div>
+</div>
+
+<script type="module">
+/* ── Firebase (Realtime Database) ───────────────────────── */
+const firebaseConfig = {
+  projectId: "clinic-77896",
+  databaseURL: "https://clinic-77896-default-rtdb.asia-southeast1.firebasedatabase.app"
+};
+
+/* ── 예약 가능 시간 (0=일 … 5=금, 6=토) ─────────────────── */
+const SCHEDULE = {
+  5: ["19:00", "19:20"],
+  6: ["14:00","14:30","15:00","15:30","16:00","16:30","19:00","19:30","20:00"]
+};
+/* 옵션 이름은 "옵션 1" 자리에 원하는 이름을 적으면 돼요 */
+const OPTIONS = [
+  { name: "옵션 1", price: 0 },
+  { name: "옵션 2", price: 2000 },
+  { name: "옵션 3", price: 4000 }
+];
+const WEEKS_AHEAD = 4;
+/* ───────────────────────────────────────────────────────── */
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, onValue, get, runTransaction, update, serverTimestamp }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const $ = s => document.querySelector(s);
+const DAY = ["일","월","화","수","목","금","토"];
+const pad = n => String(n).padStart(2,"0");
+const ymd = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const slotId = (date,t) => `${date}_${t.replace(":","")}`;
+const nameKey = s => s.replace(/[\s\/.#$\[\]]/g,"").toLowerCase();
+const digits = s => s.replace(/\D/g,"");
+const won = p => p===0 ? "무료" : p.toLocaleString("ko-KR")+"원";
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const niceDate = k => { const d=new Date(k+"T00:00:00"); return `${d.getMonth()+1}월 ${d.getDate()}일 ${DAY[d.getDay()]}요일`; };
+const isPast = (date,t) => new Date(`${date}T${t}:00`) <= new Date();
+
+let db, booked = new Set(), selDate = null;
+
+/* 운영 시간 표시 */
+$("#hours").innerHTML = Object.keys(SCHEDULE).map(k=>{
+  const s = SCHEDULE[k];
+  return `<div><dt>${DAY[k]}</dt><dd>${s[0]}${s.length>1 ? " – "+s[s.length-1] : ""}</dd></div>`;
+}).join("") + `<div><dt>소요</dt><dd>20~30분</dd></div>`;
+
+/* 날짜 목록 */
+const dateList = (()=>{
+  const out=[], today=new Date(); today.setHours(0,0,0,0);
+  for(let i=0;i<WEEKS_AHEAD*7;i++){
+    const d=new Date(today); d.setDate(today.getDate()+i);
+    if(SCHEDULE[d.getDay()]) out.push(d);
+  }
+  return out;
+})();
+
+function renderDates(){
+  $("#dates").innerHTML = dateList.map(d=>{
+    const k=ymd(d);
+    return `<button class="date ${k===selDate?"on":""}" data-d="${k}">
+      <span>${d.getMonth()+1}월</span><b>${d.getDate()}</b><small>${DAY[d.getDay()]}</small></button>`;
+  }).join("");
+}
+function renderTimes(){
+  const box=$("#times");
+  if(!selDate){ box.innerHTML=""; $("#pick").style.display="block"; return; }
+  $("#pick").style.display="none";
+  const day=new Date(selDate+"T00:00:00").getDay();
+  box.innerHTML = SCHEDULE[day].map(t=>{
+    const full = booked.has(slotId(selDate,t)) || isPast(selDate,t);
+    return `<button class="time ${full?"full":""}" data-t="${t}" ${full?"disabled":""}>
+      <b>${t}</b><small>${full?"마감":"예약 가능"}</small></button>`;
+  }).join("");
+}
+
+/* 바텀시트 */
+function openSheet(html){ $("#sheet").innerHTML = `<div class="grab"></div>${html}`; $("#modal").classList.add("on"); }
+function closeSheet(){ $("#modal").classList.remove("on"); }
+
+function openForm(date,t){
+  openSheet(`
+    <div class="summary"><p>선택한 시간</p><h3>${niceDate(date)}<span>${t}</span></h3></div>
+    <label class="f" for="nm">시술 받는 분 이름</label>
+    <input type="text" id="nm" autocomplete="name" placeholder="홍길동">
+    <label class="f">옵션</label>
+    <div class="opts" id="opts">${OPTIONS.map((o,i)=>`
+      <label class="opt ${i===0?"on":""}">
+        <input type="radio" name="opt" value="${i}" ${i===0?"checked":""}>
+        <span class="nm">${esc(o.name)}</span><span class="pr">${won(o.price)}</span>
+      </label>`).join("")}</div>
+    <label class="f" for="ph">연락처</label>
+    <input type="tel" id="ph" inputmode="numeric" autocomplete="tel" placeholder="010-1234-5678">
+    <div class="err" id="err"></div>
+    <button class="btn" id="submit">예약하기</button>
+    <button class="link" id="cancel">닫기</button>`);
+  $("#cancel").onclick = closeSheet;
+  $("#opts").onchange = () => document.querySelectorAll("#opts .opt")
+    .forEach(l=>l.classList.toggle("on", l.querySelector("input").checked));
+  $("#submit").onclick = () => book(date,t);
+}
+
+async function book(date,t){
+  const name=$("#nm").value.trim(), phone=digits($("#ph").value);
+  const opt=OPTIONS[+document.querySelector('input[name="opt"]:checked').value];
+  const err=$("#err");
+  if(name.length<2){ err.textContent="이름을 2자 이상 적어 주세요."; return; }
+  if(phone.length<10||phone.length>11){ err.textContent="연락처를 다시 확인해 주세요."; return; }
+
+  const btn=$("#submit"); btn.disabled=true; btn.textContent="예약하는 중…";
+  const id=slotId(date,t);
+  const masked = name.length>2 ? name[0]+"*".repeat(name.length-2)+name.slice(-1) : name[0]+"*";
+
+  try{
+    // 1) 자리 선점: 비어 있을 때만 기록 (동시 예약 방지)
+    const res = await runTransaction(ref(db,`slots/${id}`), cur =>
+      cur === null ? { date, time:t, who:masked, createdAt:Date.now() } : undefined
+    );
+    if(!res.committed) throw new Error("TAKEN");
+
+    // 2) 예약 정보 + 연락처 저장
+    await update(ref(db), {
+      [`bookings/${nameKey(name)}/${id}`]: { date, time:t, name, option:opt.name, price:opt.price, createdAt:serverTimestamp() },
+      [`contacts/${id}`]: { name, phone, option:opt.name, price:opt.price, createdAt:serverTimestamp() }
+    });
+
+    openSheet(`
+      <div class="done">
+        <span class="tag">예약 완료</span>
+        <h3>${esc(name)}님, 예약됐어요</h3>
+        <dl>
+          <div><dt>날짜</dt><dd>${niceDate(date)}</dd></div>
+          <div><dt>시간</dt><dd>${t}</dd></div>
+          <div><dt>옵션</dt><dd>${esc(opt.name)} · ${won(opt.price)}</dd></div>
+        </dl>
+        <p class="note">시간 맞춰 와 주세요. ‘내 예약 확인’에서 이름으로 다시 볼 수 있어요.</p>
+      </div>
+      <button class="btn" id="ok">확인</button>`);
+    $("#ok").onclick = closeSheet;
+  }catch(e){
+    btn.disabled=false; btn.textContent="예약하기";
+    err.textContent = e.message==="TAKEN"
+      ? "방금 다른 분이 먼저 예약했어요. 다른 시간을 골라 주세요."
+      : "예약이 안 됐어요. 잠시 후 다시 시도해 주세요.";
+    console.error(e);
+  }
+}
+
+/* 내 예약 확인 */
+async function findMine(){
+  const nm=$("#fname").value.trim(), err=$("#ferr"), out=$("#results");
+  err.textContent=""; out.innerHTML="";
+  if(nm.length<2){ err.textContent="이름을 2자 이상 적어 주세요."; return; }
+  $("#findBtn").disabled=true;
+  try{
+    const snap = await get(ref(db,`bookings/${nameKey(nm)}`));
+    const mine = Object.values(snap.val() || {})
+      .filter(b=>!isPast(b.date,b.time))
+      .sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+    out.innerHTML = mine.length
+      ? mine.map(b=>`<div class="ticket"><b>${niceDate(b.date)} · ${b.time}</b>
+          <span>${esc(b.name)}님 · ${esc(b.option)} · ${won(b.price)}</span></div>`).join("")
+      : `<p class="hint">앞으로 잡힌 예약이 없어요.</p>`;
+  }catch(e){ err.textContent="조회가 안 됐어요. 잠시 후 다시 시도해 주세요."; console.error(e); }
+  $("#findBtn").disabled=false;
+}
+
+/* 이벤트 */
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("on",p.id===b.dataset.tab));
+});
+$("#dates").onclick = e=>{ const b=e.target.closest(".date"); if(!b) return; selDate=b.dataset.d; renderDates(); renderTimes(); };
+$("#times").onclick = e=>{ const b=e.target.closest(".time"); if(!b||b.disabled) return; openForm(selDate,b.dataset.t); };
+$("#modal").onclick = e=>{ if(e.target.id==="modal") closeSheet(); };
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeSheet(); });
+$("#findBtn").onclick = findMine;
+$("#fname").addEventListener("keydown", e=>{ if(e.key==="Enter") findMine(); });
+
+renderDates(); renderTimes();
+
+/* 실시간 연결 */
+try{
+  db = getDatabase(initializeApp(firebaseConfig));
+  onValue(ref(db,"slots"), snap=>{
+    booked = new Set(Object.keys(snap.val() || {}));
+    $("#live").className="live ok"; $("#live span").textContent="실시간";
+    renderTimes();
+  }, e=>{ $("#live span").textContent="연결 안 됨"; console.error(e); });
+}catch(e){ $("#live span").textContent="설정 필요"; console.error(e); }
+</script>
+</body>
+</html>
