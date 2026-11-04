@@ -28,16 +28,28 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 button{font:inherit;color:inherit}
+[hidden]{display:none !important}
 .wrap{max-width:520px;margin:0 auto;padding:40px 20px 64px}
 
 /* 머리말 */
-.eyebrow{margin:0 0 10px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--sub)}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.eyebrow{margin:0;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--sub)}
+.who{font-size:13px;color:var(--sub)}
+.who b{color:var(--ink);font-weight:500}
 h1{margin:0;font-family:'Gowun Batang',serif;font-weight:700;font-size:34px;letter-spacing:-.01em;line-height:1.25}
 .lead{margin:10px 0 0;color:var(--sub)}
 .hours{display:flex;flex-wrap:wrap;gap:6px 18px;margin:22px 0 0;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:13px}
 .hours div{display:flex;gap:8px}
 .hours dt{color:var(--sub)}
 .hours dd{margin:0;font-variant-numeric:tabular-nums}
+
+/* 로그인 · 회원가입 */
+.auth{margin-top:30px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 20px 18px}
+.auth h2{margin:0;font-family:'Gowun Batang',serif;font-size:22px}
+.auth .desc{margin:4px 0 0;font-size:14px;color:var(--sub)}
+.swap{margin:14px 0 0;text-align:center;font-size:14px;color:var(--sub)}
+.swap button{border:0;background:none;padding:0 0 1px;color:var(--ink);font-weight:500;border-bottom:1px solid var(--ink);cursor:pointer}
+.notice{margin:14px 0 0;padding:10px 12px;border-radius:8px;background:var(--accent-soft);color:var(--accent-ink);font-size:13px}
 
 /* 탭 */
 .tabs{display:flex;gap:22px;margin:30px 0 6px}
@@ -84,6 +96,7 @@ h1{margin:0;font-family:'Gowun Batang',serif;font-weight:700;font-size:34px;lett
 
 /* 입력 */
 label.f{display:block;font-size:13px;font-weight:500;margin:16px 0 6px}
+label.f em{font-style:normal;font-weight:400;color:var(--sub)}
 input[type=text],input[type=tel]{
   width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:8px;
   background:#fff;font:16px 'IBM Plex Sans KR',sans-serif;color:var(--ink);
@@ -91,6 +104,7 @@ input[type=text],input[type=tel]{
 input::placeholder{color:var(--faint)}
 input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
 button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.help{margin:6px 0 0;font-size:12px;color:var(--sub)}
 
 .btn{
   display:block;width:100%;margin-top:20px;padding:14px;border:0;border-radius:8px;
@@ -123,6 +137,9 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .summary p{margin:0;font-size:12px;color:var(--sub);letter-spacing:.04em}
 .summary h3{margin:2px 0 0;font-family:'Gowun Batang',serif;font-size:22px;font-weight:700}
 .summary h3 span{font-family:'IBM Plex Sans KR',sans-serif;font-weight:500;font-variant-numeric:tabular-nums;margin-left:6px}
+.booker{display:flex;justify-content:space-between;margin-top:14px;font-size:14px}
+.booker dt{color:var(--sub)}
+.booker dd{margin:0;font-variant-numeric:tabular-nums}
 
 .done{padding:6px 0 4px}
 .done .tag{display:inline-block;font-size:12px;color:var(--accent-ink);background:var(--accent-soft);padding:3px 9px;border-radius:4px}
@@ -133,10 +150,21 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .done dd{margin:0}
 .done .note{font-size:13px;color:var(--sub);margin:14px 0 0}
 
-/* 내 예약 */
-.ticket{border-left:3px solid var(--accent);background:var(--card);padding:12px 16px;margin-top:10px;border-radius:0 8px 8px 0}
+/* 마이페이지 */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:24px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.stat p{margin:0;font-size:12px;color:var(--sub)}
+.stat b{display:block;margin-top:4px;font-family:'Gowun Batang',serif;font-size:26px;font-weight:700;line-height:1.2}
+.stat b small{font-family:'IBM Plex Sans KR',sans-serif;font-size:14px;font-weight:500;margin-left:2px}
+.stat b.sm{font-size:18px;padding-top:6px}
+.sec{margin:30px 0 10px;font-size:16px;font-weight:600}
+.ticket{border-left:3px solid var(--accent);background:var(--card);padding:12px 16px;margin-top:8px;border-radius:0 8px 8px 0}
 .ticket b{display:block;font-weight:600;font-variant-numeric:tabular-nums}
 .ticket span{font-size:13px;color:var(--sub)}
+.profile{margin-top:30px;border-top:1px solid var(--line)}
+.profile div{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);font-size:14px}
+.profile dt{color:var(--sub)}
+.profile dd{margin:0;font-variant-numeric:tabular-nums}
 
 @media (prefers-reduced-motion:no-preference){
   .sheet{animation:up .22s cubic-bezier(.2,.8,.3,1)}
@@ -151,39 +179,66 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 <body>
 <div class="wrap">
   <header>
-    <p class="eyebrow">Valley Clinic</p>
+    <div class="top">
+      <p class="eyebrow">Valley Clinic</p>
+      <span class="who" id="who" hidden></span>
+    </div>
     <h1>밸리 클리닉</h1>
     <p class="lead">날짜와 시간을 고르면 바로 예약돼요.<br>시술은 한 번에 20~30분 정도 걸립니다.</p>
     <dl class="hours" id="hours"></dl>
   </header>
 
-  <nav class="tabs">
-    <button class="on" data-tab="book">예약하기</button>
-    <button data-tab="find">내 예약 확인</button>
-  </nav>
-
-  <section class="panel on" id="book">
-    <div class="step"><span class="n">01</span><h2>날짜</h2></div>
-    <div class="dates" id="dates"></div>
-
-    <div class="step">
-      <span class="n">02</span><h2>시간</h2>
-      <span class="live" id="live"><i></i><span>불러오는 중</span></span>
-    </div>
-    <div class="times" id="times"></div>
-    <p class="hint" id="pick">위에서 날짜를 먼저 골라 주세요.</p>
-
-    <p class="foot">점선으로 표시된 시간은 이미 예약이 찼어요.<br>변경이나 취소는 클리닉으로 직접 연락 부탁드려요.</p>
+  <!-- 로그인 / 회원가입 -->
+  <section class="auth" id="auth" hidden>
+    <h2 id="authTitle">로그인</h2>
+    <p class="desc" id="authDesc">가입할 때 적은 이름과 전화번호를 넣어 주세요.</p>
+    <div class="notice" id="authNotice" hidden></div>
+    <label class="f" for="aname">이름</label>
+    <input type="text" id="aname" autocomplete="name" placeholder="홍길동">
+    <label class="f" for="aphone">전화번호</label>
+    <input type="tel" id="aphone" inputmode="numeric" autocomplete="tel" placeholder="010-1234-5678">
+    <div class="err" id="aerr"></div>
+    <button class="btn" id="authBtn">로그인</button>
+    <p class="swap" id="authSwap"></p>
   </section>
 
-  <section class="panel" id="find">
-    <p class="lead">예약할 때 적은 이름을 넣으면 앞으로 잡힌 예약을 보여드려요.</p>
-    <label class="f" for="fname">예약자 이름</label>
-    <input type="text" id="fname" autocomplete="name" placeholder="홍길동">
-    <button class="btn" id="findBtn">확인하기</button>
-    <div class="err" id="ferr"></div>
-    <div id="results"></div>
-  </section>
+  <!-- 로그인 후 -->
+  <div id="app" hidden>
+    <nav class="tabs">
+      <button class="on" data-tab="book">예약하기</button>
+      <button data-tab="my">마이페이지</button>
+    </nav>
+
+    <section class="panel on" id="book">
+      <div class="step"><span class="n">01</span><h2>날짜</h2></div>
+      <div class="dates" id="dates"></div>
+
+      <div class="step">
+        <span class="n">02</span><h2>시간</h2>
+        <span class="live" id="live"><i></i><span>불러오는 중</span></span>
+      </div>
+      <div class="times" id="times"></div>
+      <p class="hint" id="pick">위에서 날짜를 먼저 골라 주세요.</p>
+
+      <p class="foot">점선으로 표시된 시간은 이미 예약이 찼어요.<br>변경이나 취소는 클리닉으로 직접 연락 부탁드려요.</p>
+    </section>
+
+    <section class="panel" id="my">
+      <div class="stats">
+        <div class="stat"><p>남은 횟수</p><b id="remain">–</b></div>
+        <div class="stat"><p>마지막 방문</p><b class="sm" id="lastVisit">–</b></div>
+      </div>
+
+      <h3 class="sec">예약된 날짜</h3>
+      <div id="upcoming"><p class="hint">불러오는 중…</p></div>
+
+      <dl class="profile">
+        <div><dt>이름</dt><dd id="pName"></dd></div>
+        <div><dt>전화번호</dt><dd id="pPhone"></dd></div>
+      </dl>
+      <button class="link" id="logout">로그아웃</button>
+    </section>
+  </div>
 </div>
 
 <div class="modal" id="modal" role="dialog" aria-modal="true">
@@ -220,14 +275,23 @@ const DAY = ["일","월","화","수","목","금","토"];
 const pad = n => String(n).padStart(2,"0");
 const ymd = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
 const slotId = (date,t) => `${date}_${t.replace(":","")}`;
-const nameKey = s => s.replace(/[\s\/.#$\[\]]/g,"").toLowerCase();
+const nameKey = s => s.replace(/\s/g,"").toLowerCase();
 const digits = s => s.replace(/\D/g,"");
+const prettyPhone = p => p.length===11 ? `${p.slice(0,3)}-${p.slice(3,7)}-${p.slice(7)}` : `${p.slice(0,3)}-${p.slice(3,6)}-${p.slice(6)}`;
 const won = p => p===0 ? "무료" : p.toLocaleString("ko-KR")+"원";
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const niceDate = k => { const d=new Date(k+"T00:00:00"); return `${d.getMonth()+1}월 ${d.getDate()}일 ${DAY[d.getDay()]}요일`; };
+const shortDate = k => { const d=new Date(k+"T00:00:00"); return `${d.getFullYear()}. ${d.getMonth()+1}. ${d.getDate()}.`; };
 const isPast = (date,t) => new Date(`${date}T${t}:00`) <= new Date();
+const mask = n => n.length>2 ? n[0]+"*".repeat(n.length-2)+n.slice(-1) : n[0]+"*";
 
-let db, booked = new Set(), selDate = null;
+let db, booked = new Set(), selDate = null, me = null, authMode = "login";
+
+/* ── 로그인 상태 보관 (이 기기에서만) ── */
+const KEY = "valley_user";
+const saveMe = u => { try{ localStorage.setItem(KEY, JSON.stringify(u)); }catch(e){} };
+const loadMe = () => { try{ return JSON.parse(localStorage.getItem(KEY)); }catch(e){ return null; } };
+const clearMe = () => { try{ localStorage.removeItem(KEY); }catch(e){} };
 
 /* 운영 시간 표시 */
 $("#hours").innerHTML = Object.keys(SCHEDULE).map(k=>{
@@ -235,7 +299,74 @@ $("#hours").innerHTML = Object.keys(SCHEDULE).map(k=>{
   return `<div><dt>${DAY[k]}</dt><dd>${s[0]}${s.length>1 ? " – "+s[s.length-1] : ""}</dd></div>`;
 }).join("") + `<div><dt>소요</dt><dd>20~30분</dd></div>`;
 
-/* 날짜 목록 */
+/* ── 로그인 / 회원가입 화면 ── */
+function setAuthMode(mode, notice=""){
+  authMode = mode;
+  const login = mode==="login";
+  $("#authTitle").textContent = login ? "로그인" : "회원가입";
+  $("#authDesc").textContent = login
+    ? "가입할 때 적은 이름과 전화번호를 넣어 주세요."
+    : "처음 오셨네요. 이름과 전화번호만 있으면 가입돼요.";
+  $("#authBtn").textContent = login ? "로그인" : "가입하고 시작하기";
+  $("#authSwap").innerHTML = login
+    ? `처음이신가요? <button id="toSignup">회원가입</button>`
+    : `이미 가입하셨나요? <button id="toLogin">로그인</button>`;
+  $("#authNotice").hidden = !notice;
+  $("#authNotice").textContent = notice;
+  $("#aerr").textContent = "";
+  const sw = $("#toSignup") || $("#toLogin");
+  sw.onclick = () => setAuthMode(login ? "signup" : "login");
+}
+
+function showAuth(){
+  $("#app").hidden = true; $("#who").hidden = true; $("#auth").hidden = false;
+  setAuthMode("login");
+}
+function showApp(){
+  $("#auth").hidden = true; $("#app").hidden = false;
+  $("#who").hidden = false;
+  $("#who").innerHTML = `<b>${esc(me.name)}</b>님`;
+  $("#pName").textContent = me.name;
+  $("#pPhone").textContent = prettyPhone(me.phone);
+  renderDates(); renderTimes();
+}
+
+async function submitAuth(){
+  const name = $("#aname").value.trim(), phone = digits($("#aphone").value), err = $("#aerr");
+  err.textContent = "";
+  if(name.length<2){ err.textContent="이름을 2자 이상 적어 주세요."; return; }
+  if(phone.length<10||phone.length>11){ err.textContent="전화번호를 다시 확인해 주세요."; return; }
+
+  const btn = $("#authBtn"); btn.disabled = true;
+  try{
+    if(authMode==="login"){
+      const snap = await get(ref(db,`users/${phone}`));
+      if(!snap.exists()){
+        setAuthMode("signup","가입된 정보가 없어요. 아래 내용으로 회원가입을 해 주세요.");
+        return;
+      }
+      if(nameKey(snap.val().name) !== nameKey(name)){
+        err.textContent = "이름과 전화번호가 맞지 않아요."; return;
+      }
+      me = { name: snap.val().name, phone };
+    }else{
+      const res = await runTransaction(ref(db,`users/${phone}`), cur =>
+        cur === null ? { name, phone, remaining:0, createdAt:Date.now() } : undefined
+      );
+      if(!res.committed){
+        setAuthMode("login","이미 가입된 번호예요. 로그인해 주세요."); return;
+      }
+      me = { name, phone };
+    }
+    saveMe(me); showApp();
+  }catch(e){
+    err.textContent = "잠시 후 다시 시도해 주세요."; console.error(e);
+  }finally{
+    btn.disabled = false;
+  }
+}
+
+/* ── 날짜 · 시간 ── */
 const dateList = (()=>{
   const out=[], today=new Date(); today.setHours(0,0,0,0);
   for(let i=0;i<WEEKS_AHEAD*7;i++){
@@ -264,23 +395,23 @@ function renderTimes(){
   }).join("");
 }
 
-/* 바텀시트 */
+/* ── 예약 ── */
 function openSheet(html){ $("#sheet").innerHTML = `<div class="grab"></div>${html}`; $("#modal").classList.add("on"); }
 function closeSheet(){ $("#modal").classList.remove("on"); }
 
 function openForm(date,t){
   openSheet(`
     <div class="summary"><p>선택한 시간</p><h3>${niceDate(date)}<span>${t}</span></h3></div>
-    <label class="f" for="nm">시술 받는 분 이름</label>
-    <input type="text" id="nm" autocomplete="name" placeholder="홍길동">
+    <dl class="booker"><dt>예약자</dt><dd>${esc(me.name)} · ${prettyPhone(me.phone)}</dd></dl>
+    <label class="f" for="cust">시술 받는 분 <em>(예약자와 다를 때만)</em></label>
+    <input type="text" id="cust" autocomplete="off" placeholder="${esc(me.name)}">
+    <p class="help">비워 두면 예약자 본인으로 예약돼요.</p>
     <label class="f">옵션</label>
     <div class="opts" id="opts">${OPTIONS.map((o,i)=>`
       <label class="opt ${i===0?"on":""}">
         <input type="radio" name="opt" value="${i}" ${i===0?"checked":""}>
         <span class="nm">${esc(o.name)}</span><span class="pr">${won(o.price)}</span>
       </label>`).join("")}</div>
-    <label class="f" for="ph">연락처</label>
-    <input type="tel" id="ph" inputmode="numeric" autocomplete="tel" placeholder="010-1234-5678">
     <div class="err" id="err"></div>
     <button class="btn" id="submit">예약하기</button>
     <button class="link" id="cancel">닫기</button>`);
@@ -291,39 +422,39 @@ function openForm(date,t){
 }
 
 async function book(date,t){
-  const name=$("#nm").value.trim(), phone=digits($("#ph").value);
-  const opt=OPTIONS[+document.querySelector('input[name="opt"]:checked').value];
-  const err=$("#err");
-  if(name.length<2){ err.textContent="이름을 2자 이상 적어 주세요."; return; }
-  if(phone.length<10||phone.length>11){ err.textContent="연락처를 다시 확인해 주세요."; return; }
+  const typed = $("#cust").value.trim();
+  const customer = typed || me.name;
+  const opt = OPTIONS[+document.querySelector('input[name="opt"]:checked').value];
+  const err = $("#err");
+  if(typed && typed.length<2){ err.textContent="시술 받는 분 이름을 2자 이상 적어 주세요."; return; }
 
   const btn=$("#submit"); btn.disabled=true; btn.textContent="예약하는 중…";
   const id=slotId(date,t);
-  const masked = name.length>2 ? name[0]+"*".repeat(name.length-2)+name.slice(-1) : name[0]+"*";
-
   try{
     // 1) 자리 선점: 비어 있을 때만 기록 (동시 예약 방지)
     const res = await runTransaction(ref(db,`slots/${id}`), cur =>
-      cur === null ? { date, time:t, who:masked, createdAt:Date.now() } : undefined
+      cur === null ? { date, time:t, who:mask(customer), createdAt:Date.now() } : undefined
     );
     if(!res.committed) throw new Error("TAKEN");
 
-    // 2) 예약 정보 + 연락처 저장
+    // 2) 내 예약 + 클리닉용 연락처
+    const row = { date, time:t, booker:me.name, customer, option:opt.name, price:opt.price, createdAt:serverTimestamp() };
     await update(ref(db), {
-      [`bookings/${nameKey(name)}/${id}`]: { date, time:t, name, option:opt.name, price:opt.price, createdAt:serverTimestamp() },
-      [`contacts/${id}`]: { name, phone, option:opt.name, price:opt.price, createdAt:serverTimestamp() }
+      [`bookings/${me.phone}/${id}`]: row,
+      [`contacts/${id}`]: { ...row, phone:me.phone }
     });
 
     openSheet(`
       <div class="done">
         <span class="tag">예약 완료</span>
-        <h3>${esc(name)}님, 예약됐어요</h3>
+        <h3>예약됐어요</h3>
         <dl>
           <div><dt>날짜</dt><dd>${niceDate(date)}</dd></div>
           <div><dt>시간</dt><dd>${t}</dd></div>
+          <div><dt>시술 받는 분</dt><dd>${esc(customer)}</dd></div>
           <div><dt>옵션</dt><dd>${esc(opt.name)} · ${won(opt.price)}</dd></div>
         </dl>
-        <p class="note">시간 맞춰 와 주세요. ‘내 예약 확인’에서 이름으로 다시 볼 수 있어요.</p>
+        <p class="note">시간 맞춰 와 주세요. 마이페이지에서 언제든 다시 볼 수 있어요.</p>
       </div>
       <button class="btn" id="ok">확인</button>`);
     $("#ok").onclick = closeSheet;
@@ -336,40 +467,56 @@ async function book(date,t){
   }
 }
 
-/* 내 예약 확인 */
-async function findMine(){
-  const nm=$("#fname").value.trim(), err=$("#ferr"), out=$("#results");
-  err.textContent=""; out.innerHTML="";
-  if(nm.length<2){ err.textContent="이름을 2자 이상 적어 주세요."; return; }
-  $("#findBtn").disabled=true;
+/* ── 마이페이지 ── */
+async function loadMy(){
+  $("#upcoming").innerHTML = `<p class="hint">불러오는 중…</p>`;
   try{
-    const snap = await get(ref(db,`bookings/${nameKey(nm)}`));
-    const mine = Object.values(snap.val() || {})
-      .filter(b=>!isPast(b.date,b.time))
-      .sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
-    out.innerHTML = mine.length
-      ? mine.map(b=>`<div class="ticket"><b>${niceDate(b.date)} · ${b.time}</b>
-          <span>${esc(b.name)}님 · ${esc(b.option)} · ${won(b.price)}</span></div>`).join("")
+    const [uSnap, bSnap] = await Promise.all([
+      get(ref(db,`users/${me.phone}`)),
+      get(ref(db,`bookings/${me.phone}`))
+    ]);
+    const user = uSnap.val() || {};
+    const all = Object.values(bSnap.val() || {});
+    const upcoming = all.filter(b=>!isPast(b.date,b.time)).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+    const past = all.filter(b=>isPast(b.date,b.time)).map(b=>b.date);
+
+    // 남은 횟수: 클리닉에서 관리 (Firebase 콘솔 users/전화번호/remaining)
+    $("#remain").innerHTML = `${Number(user.remaining)||0}<small>회</small>`;
+
+    // 마지막 방문: 지난 예약 중 가장 최근 날짜 (콘솔에서 lastVisit을 직접 적으면 그것도 반영)
+    if(user.lastVisit) past.push(user.lastVisit);
+    const last = past.sort().pop();
+    $("#lastVisit").textContent = last ? shortDate(last) : "기록 없음";
+
+    $("#upcoming").innerHTML = upcoming.length
+      ? upcoming.map(b=>`<div class="ticket"><b>${niceDate(b.date)} · ${b.time}</b>
+          <span>${esc(b.customer||b.booker)}${b.customer && b.customer!==b.booker ? " (대리 예약)" : ""} · ${esc(b.option)} · ${won(b.price)}</span></div>`).join("")
       : `<p class="hint">앞으로 잡힌 예약이 없어요.</p>`;
-  }catch(e){ err.textContent="조회가 안 됐어요. 잠시 후 다시 시도해 주세요."; console.error(e); }
-  $("#findBtn").disabled=false;
+  }catch(e){
+    $("#upcoming").innerHTML = `<p class="hint">불러오지 못했어요. 잠시 후 다시 시도해 주세요.</p>`;
+    console.error(e);
+  }
 }
 
-/* 이벤트 */
+/* ── 이벤트 ── */
 document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{
   document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b));
   document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("on",p.id===b.dataset.tab));
+  if(b.dataset.tab==="my") loadMy();
 });
 $("#dates").onclick = e=>{ const b=e.target.closest(".date"); if(!b) return; selDate=b.dataset.d; renderDates(); renderTimes(); };
 $("#times").onclick = e=>{ const b=e.target.closest(".time"); if(!b||b.disabled) return; openForm(selDate,b.dataset.t); };
 $("#modal").onclick = e=>{ if(e.target.id==="modal") closeSheet(); };
 document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeSheet(); });
-$("#findBtn").onclick = findMine;
-$("#fname").addEventListener("keydown", e=>{ if(e.key==="Enter") findMine(); });
+$("#authBtn").onclick = submitAuth;
+$("#aphone").addEventListener("keydown", e=>{ if(e.key==="Enter") submitAuth(); });
+$("#logout").onclick = () => {
+  clearMe(); me = null;
+  document.querySelector('.tabs button[data-tab="book"]').click();
+  showAuth();
+};
 
-renderDates(); renderTimes();
-
-/* 실시간 연결 */
+/* ── 시작 ── */
 try{
   db = getDatabase(initializeApp(firebaseConfig));
   onValue(ref(db,"slots"), snap=>{
@@ -377,7 +524,20 @@ try{
     $("#live").className="live ok"; $("#live span").textContent="실시간";
     renderTimes();
   }, e=>{ $("#live span").textContent="연결 안 됨"; console.error(e); });
-}catch(e){ $("#live span").textContent="설정 필요"; console.error(e); }
+
+  const saved = loadMe();
+  if(saved && saved.phone){
+    get(ref(db,`users/${saved.phone}`)).then(s=>{
+      if(s.exists()){ me = { name:s.val().name, phone:saved.phone }; showApp(); }
+      else { clearMe(); showAuth(); }
+    }).catch(()=>showAuth());
+  }else{
+    showAuth();
+  }
+}catch(e){
+  console.error(e); showAuth();
+  $("#aerr").textContent = "연결 설정을 확인해 주세요.";
+}
 </script>
 </body>
 </html>
