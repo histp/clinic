@@ -93,6 +93,9 @@ h1{margin:0;font-family:'Gowun Batang',serif;font-weight:700;font-size:34px;lett
 .time.full:hover{border-color:var(--line);background:transparent}
 .hint{color:var(--sub);font-size:14px;padding:14px 0;margin:0}
 .foot{margin:28px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--sub)}
+.policy{margin:16px 0 0;padding:13px 15px;border-radius:8px;background:var(--card);border:1px solid var(--line);font-size:13px;color:var(--sub);line-height:1.7}
+.policy b{display:block;margin-bottom:3px;color:var(--ink);font-weight:600;font-size:14px}
+.policy strong{color:var(--ink);font-weight:500}
 
 /* 입력 */
 label.f{display:block;font-size:13px;font-weight:500;margin:16px 0 6px}
@@ -220,7 +223,8 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
       <div class="times" id="times"></div>
       <p class="hint" id="pick">위에서 날짜를 먼저 골라 주세요.</p>
 
-      <p class="foot">점선으로 표시된 시간은 이미 예약이 찼어요.<br>변경이나 취소는 클리닉으로 직접 연락 부탁드려요.</p>
+      <p class="foot">점선으로 표시된 시간은 이미 예약이 찼어요.</p>
+      <div class="policy"><b>예약 변경 · 취소 안내</b>예약 변경과 취소는 <strong>예약일 전날까지만</strong> 가능해요.<br>당일 새로 예약하거나 당일 변경 · 취소를 원하시면 <strong>최선혜</strong>에게 직접 연락해 주세요.</div>
     </section>
 
     <section class="panel" id="my">
@@ -231,6 +235,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
       <h3 class="sec">예약된 날짜</h3>
       <div id="upcoming"><p class="hint">불러오는 중…</p></div>
+      <div class="policy"><b>예약 변경 · 취소 안내</b>예약 변경과 취소는 <strong>예약일 전날까지만</strong> 가능해요.<br>당일 새로 예약하거나 당일 변경 · 취소를 원하시면 <strong>최선혜</strong>에게 직접 연락해 주세요.</div>
 
       <dl class="profile">
         <div><dt>이름</dt><dd id="pName"></dd></div>
@@ -454,7 +459,7 @@ async function book(date,t){
           <div><dt>시술 받는 분</dt><dd>${esc(customer)}</dd></div>
           <div><dt>옵션</dt><dd>${esc(opt.name)} · ${won(opt.price)}</dd></div>
         </dl>
-        <p class="note">시간 맞춰 와 주세요. 마이페이지에서 언제든 다시 볼 수 있어요.</p>
+        <p class="note">시간 맞춰 와 주세요. 마이페이지에서 언제든 다시 볼 수 있어요.<br>변경 · 취소는 예약일 전날까지만 가능하고, 당일에는 최선혜에게 연락해 주세요.</p>
       </div>
       <button class="btn" id="ok">확인</button>`);
     $("#ok").onclick = closeSheet;
